@@ -7,7 +7,7 @@ var db = new sqlite3.Database('algolia.db')
 
 var exports = (module.exports = {})
 
-let getAllRepos = async function (orgName, small) {
+exports.getAllRepos = async function (orgName, small) {
   let nbRepos = await ghAPI.getNumberRepos(orgName)
   if (small) {
     var nbRepoCall = 2
@@ -23,7 +23,7 @@ let getAllRepos = async function (orgName, small) {
   return repoNames
 }
 
-let getContribs = async function (orgName, repoNames) {
+exports.getContribs = async function (orgName, repoNames) {
   let contribs = []
   for (let i = 0; i < repoNames.length; i++) {
     let temp2 = await ghAPI.getMonthlyNewContrib(orgName, repoNames[i], 0)
@@ -33,9 +33,9 @@ let getContribs = async function (orgName, repoNames) {
 }
 
 exports.generateDataSet = async function (orgName, small) {
-  let repoNames = await getAllRepos(orgName, small)
+  let repoNames = await exports.getAllRepos(orgName, small)
   console.log(repoNames.length)
-  let contribs = await getContribs(orgName, repoNames)
+  let contribs = await exports.getContribs(orgName, repoNames)
   let result = {}
 
   repoNames.forEach(async (element, index) => {
@@ -53,4 +53,6 @@ exports.generateDataSet = async function (orgName, small) {
   db.close()
 }
 
+// to generate the small dataset, otherwise set to false but it will take a long time
+// due to all the 202 code of the api
 exports.generateDataSet('algolia', true)
