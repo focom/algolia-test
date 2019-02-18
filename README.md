@@ -2,7 +2,14 @@
 
 ## To run the project
 
-Create a .env file this will contain your Github API token
+Copy the project on your pc
+
+```
+git clone https://github.com/focom/algolia-test.git
+cd algolia-test
+```
+
+Create a .env file this will contain your Github API token (to have a 5000 rate call on the Github API)
 
 ```
 echo 'token={your-access-token}' > .env
