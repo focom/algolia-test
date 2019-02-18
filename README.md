@@ -54,6 +54,6 @@ To generate the dataset, here are the steps I made :
 - Clean the data in the desired format
 
 You can browse the dataset, in algolia.db file. It is a sqliteDB.
-It is a subset of all the repo ~ 60 repos.
+It is a subset of all the repo (~60 repos out of the ~360).
 
 Use https://sqlitebrowser.org/ to browse the db easily
